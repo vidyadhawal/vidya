@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+This is a temporary script file.
+"""
+
+import pandas as p
+import numpy as np
+import seaborn as sb
+import matplotlib as mp
+dataset=p.read_csv('Salary_Data.csv')
+
+##divide the dataset
+x=dataset.iloc[:,:-1].values
+y=dataset.iloc[:,1].values
+
+## spliting the data based on training and test data
+import scipy as sc
+import pip as pip
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test= train_test_split(x,y,test_size=1/3,random_state=0)
+
+## implement our classifirs based on simple linear regression
+from sklearn.linear_model import LinearRegression
+simpleLinearRegression=LinearRegression()
+simpleLinearRegression.fit(x_train,y_train)
+
+y_predict=simpleLinearRegression.predict(x_test)
+
+## implement the graph
+import matplotlib.pyplot as plt
+plt.scatter (x_train,y_train, color='red')
+plt.plot(x_train,simpleLinearRegression.predict(x_train))
+plt.show()
