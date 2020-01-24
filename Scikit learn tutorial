@@ -1,0 +1,51 @@
+from sklearn import svm
+from sklearn import datasets
+# load iris dataset
+iris=datasets.load_iris()
+type(iris)
+iris.data
+iris.feature_names
+iris.target
+iris.target_names
+# set independent variable cosidering only two features
+X=iris.data[:,2]
+#dependent variable
+y=iris.target
+# split the data
+from sklearn.model_selection import train_test_split
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=4)
+model=svm.SVC(kernel='linear')
+# coverting to one dimensional array
+X_train_mod=X_train.reshape(-1,1)
+X_test_mod=X_test.reshape(-1,1)
+y_train_mod=y_train.reshape(-1,1)
+y_test_mod=y_test.reshape(-1,1)
+model.fit(X_train_mod,y_train_mod)
+y_pred_mod=model.predict(X_test_mod)
+rom sklearn.metrics import accuracy_score ## tocalculate accuracy
+print(accuracy_score(y_test_mod,y_pred_mod))
+
+##knn/k nearest neighbors
+
+## load iris data
+from sklearn.datasets import load_iris
+iris=load_iris()
+X=iris.data
+y=iris.target
+X.shape
+y.shape
+from sklearn.neighbors import KNeighborsClassifier
+knn=KNeighborsClassifier(n_neighbors=1)
+knn
+knn.fit(X,y)
+import numpy as np
+a=np.array([4,5,6,2])
+a.shape
+knn.predict([a])
+
+## logistic regression
+
+from sklearn.linear_model import LogisticRegression
+logreg=LogisticRegression()
+logreg.fit(X,y)
+logreg.predict([a])
